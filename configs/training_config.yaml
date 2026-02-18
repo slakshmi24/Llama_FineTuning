@@ -1,0 +1,36 @@
+# Llama Fine-Tuning Configuration
+
+# Model Configuration
+model_name: "meta-llama/Llama-2-7b"  # Base model
+output_dir: "models/llama-finetuned"
+
+# LoRA Configuration
+use_lora: true
+lora_rank: 8
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: ["q_proj", "v_proj"]
+
+# Quantization (QLoRA)
+use_quantization: false  # Set to true for 4-bit quantization
+
+# Training Arguments
+num_epochs: 3
+batch_size: 4
+gradient_accumulation_steps: 4
+learning_rate: 5e-4
+warmup_steps: 100
+weight_decay: 0.01
+gradient_checkpointing: true
+
+# Evaluation
+eval_steps: 100
+save_steps: 100
+
+# Logging
+use_wandb: false
+logging_steps: 10
+
+# Generation
+max_seq_length: 512
+pad_to_multiple_of: 8
